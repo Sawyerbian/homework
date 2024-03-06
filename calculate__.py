@@ -1,12 +1,12 @@
 import random
 import openpyxl
+from openpyxl import Workbook
 from openpyxl.styles import Font
 fontStyle = Font(size = "28")
 
 def make_sheet(name):
   # 创建工作簿
   wb = openpyxl.load_workbook('计算.xlsx')
-
   # 创建工作表
   ws = wb.create_sheet(str(name))
 
@@ -14,7 +14,7 @@ def make_sheet(name):
   ws['A1'] = '日期          '
   ws['B1'] = '时间          '
   # 生成题目
-  for i in range(1, 12):
+  for i in range(1, 13):
     for j in range(1, 3):
       if i % 2 == 1:
         # 加法
@@ -39,7 +39,7 @@ def make_sheet(name):
         ws.cell(row=i+1, column=j).value = f"{a} - {b} =   "
         ws.cell(row=i+1, column=j).font = fontStyle
 
-    ws.row_dimensions[i].height=50
+    ws.row_dimensions[i+1].height=50
   for col in ['A','B','C','D']:
     ws.column_dimensions[col].width=44 
 
